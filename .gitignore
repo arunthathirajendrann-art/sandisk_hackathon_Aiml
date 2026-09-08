@@ -1,0 +1,33 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.idea/
+.vscode/
+
+data/
+input/
+cache/
+cache_mrf/
+cache_tuned/
+scratch/
+*.pkl
+*.parquet
+
+# Model binaries and large generated artifacts
+*.joblib
+
+# Generated submission files
+submission.csv
+*_submission.csv
+**/submission.csv
+
+# Generated plots/images and HTML reports
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.html
+
+# Local copy of the problem statement handed out with the task.
+Hackathon Problem - Die Yield Prediction/
