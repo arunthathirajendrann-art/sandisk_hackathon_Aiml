@@ -1,0 +1,5 @@
+case_category,wafer_id,die_row,die_col,peak_anomaly_index,peak_anomaly_range,peak_scan_value
+True_Positive_TP,W_N_0083,9,23,1505,"[1460, 1550]",0.1447249334091125
+False_Positive_FP,W_F_0039,17,3,641,"[596, 686]",0.15890544963474418
+True_Negative_TN,W_N_0007,20,18,1982,"[1937, 1999]",0.047716668118282984
+False_Negative_FN,W_N_0055,23,11,189,"[144, 234]",0.09066356588272093

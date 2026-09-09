@@ -74,7 +74,10 @@ class Fusion:
     """Fit and score the additive posterior."""
 
     use_block: bool = True
+    use_block_lrt: bool = True
+    use_block_cnn: bool = False
     use_parametric: bool = True
+    use_parametric_mlp: bool = False
     use_old_fails: bool = True
     subtract_density: bool = False
     evidence_level: str = "match_count"
@@ -88,8 +91,11 @@ class Fusion:
     block_C: float = 0.05
     rounds: int = 1
     random_state: int = 42
+    block_cnn_scores: np.ndarray | None = field(default=None, repr=False)
     diagonal_: channels.DiagonalScore | None = field(default=None, repr=False)
+    encoder_: object | None = field(default=None, repr=False)
     block_model_: Pipeline | None = field(default=None, repr=False)
+    block_fusion_model_: Pipeline | None = field(default=None, repr=False)
     head_: head_module.AdditiveHead | None = field(default=None, repr=False)
 
     # ----------------------------------------------------------------- pieces
@@ -103,7 +109,7 @@ class Fusion:
         index = np.flatnonzero(rows)
         out = pd.DataFrame(index=index)
         if self.use_parametric:
-            score = self.diagonal_.transform(x)[rows]
+            score = (self.encoder_.transform(x) if self.use_parametric_mlp else self.diagonal_.transform(x))[rows]
             if self.density_slope_:
                 # The generator adds ``fail_density * 0.2 * fail_shift`` to every
                 # measurement, failing or not, so the diagonal score carries a
@@ -115,9 +121,19 @@ class Fusion:
                     rows, GENERATOR_DENSITY].to_numpy(dtype=np.float64)
             out["parametric_score"] = score
         if self.use_block:
-            block = frame.loc[rows, self.block_names_].replace(
-                [np.inf, -np.inf], np.nan)
-            out["block_score"] = _logit(self.block_model_.predict_proba(block)[:, 1])
+            if self.use_block_lrt and not self.use_block_cnn:
+                block = frame.loc[rows, self.block_names_].replace(
+                    [np.inf, -np.inf], np.nan)
+                out["block_score"] = _logit(self.block_model_.predict_proba(block)[:, 1])
+            elif self.use_block_cnn and not self.use_block_lrt:
+                out["block_score"] = self.block_cnn_scores[rows]
+            elif self.use_block_lrt and self.use_block_cnn:
+                block = frame.loc[rows, self.block_names_].replace(
+                    [np.inf, -np.inf], np.nan)
+                lrt_logits = _logit(self.block_model_.predict_proba(block)[:, 1])
+                cnn_logits = self.block_cnn_scores[rows]
+                combined = np.column_stack([lrt_logits, cnn_logits])
+                out["block_score"] = _logit(self.block_fusion_model_.predict_proba(combined)[:, 1])
         out[LOG_SHAPE] = frame.loc[rows, LOG_SHAPE].to_numpy(dtype=np.float64)
         for name in self.prior_linear_:
             out[name] = frame.loc[rows, name].to_numpy(dtype=np.float64)
@@ -217,28 +233,35 @@ class Fusion:
         old_label = frame["old_label"].to_numpy(dtype=np.int8)
         wafer = frame["wafer_id"].astype(str).to_numpy()
 
-        self.block_names_ = self.block_columns(frame) if self.use_block else []
-        self.prior_linear_ = tuple(n for n in PRIOR_LINEAR if n in frame.columns)
-        self.evidence_terms_ = tuple(
-            name for name, enabled in (("parametric_score", self.use_parametric),
-                                       ("block_score", self.use_block)) if enabled)
-
         fit_rows = rows & (old_label == 0)
         self.density_slope_ = 0.0
         if self.use_parametric:
-            self.diagonal_ = channels.fit_channel(
-                x, label, old_label, rows, use_old_fails=self.use_old_fails)
+            if self.use_parametric_mlp:
+                from tuned import parametric_encoder
+                self.encoder_ = parametric_encoder.fit_encoder(
+                    x, label, old_label, rows, use_old_fails=self.use_old_fails,
+                    random_state=self.random_state
+                )
+            else:
+                self.diagonal_ = channels.fit_channel(
+                    x, label, old_label, rows, use_old_fails=self.use_old_fails)
             if self.subtract_density and GENERATOR_DENSITY in frame.columns:
                 # Fitted on passing dies only, so the failures' own shift cannot
                 # drag the slope and take real signal with it.
                 clean = fit_rows & (label == 0)
                 density = frame.loc[clean, GENERATOR_DENSITY].to_numpy(
                     dtype=np.float64)
-                raw = self.diagonal_.transform(x)[clean]
+                raw = (self.encoder_.transform(x) if self.use_parametric_mlp else self.diagonal_.transform(x))[clean]
                 spread = float(density.var())
                 if spread > 1e-12:
                     self.density_slope_ = float(
                         np.cov(density, raw, bias=True)[0, 1] / spread)
+
+        self.block_names_ = self.block_columns(frame) if self.use_block else []
+        self.prior_linear_ = tuple(n for n in PRIOR_LINEAR if n in frame.columns)
+        self.evidence_terms_ = tuple(
+            name for name, enabled in (("parametric_score", self.use_parametric),
+                                       ("block_score", self.use_block)) if enabled)
         if self.use_block:
             # ``generate_block_readings`` injects the anomaly signature into every
             # die whose final label is 1, pre-test failures included, so those
@@ -248,17 +271,30 @@ class Fusion:
             block_rows = fit_rows
             if self.use_old_fails:
                 block_rows = fit_rows | (rows & (old_label == 1))
-            block = frame.loc[block_rows, self.block_names_].replace(
-                [np.inf, -np.inf], np.nan)
-            self.block_model_ = Pipeline(
-                steps=[
-                    ("imputer", SimpleImputer(strategy="median")),
-                    ("scale", StandardScaler()),
-                    ("classifier", LogisticRegression(
-                        C=self.block_C, solver="lbfgs", max_iter=3_000,
-                        random_state=self.random_state)),
-                ]
-            ).fit(block, label[block_rows])
+            if self.use_block_lrt:
+                block = frame.loc[block_rows, self.block_names_].replace(
+                    [np.inf, -np.inf], np.nan)
+                self.block_model_ = Pipeline(
+                    steps=[
+                        ("imputer", SimpleImputer(strategy="median")),
+                        ("scale", StandardScaler()),
+                        ("classifier", LogisticRegression(
+                            C=self.block_C, solver="lbfgs", max_iter=3_000,
+                            random_state=self.random_state)),
+                    ]
+                ).fit(block, label[block_rows])
+            if self.use_block_lrt and self.use_block_cnn:
+                lrt_logits = _logit(self.block_model_.predict_proba(block)[:, 1])
+                cnn_logits = self.block_cnn_scores[block_rows]
+                combined = np.column_stack([lrt_logits, cnn_logits])
+                self.block_fusion_model_ = Pipeline(
+                    steps=[
+                        ("scale", StandardScaler()),
+                        ("classifier", LogisticRegression(
+                            C=1.0, solver="lbfgs", max_iter=3_000,
+                            random_state=self.random_state)),
+                    ]
+                ).fit(combined, label[block_rows])
 
         design = self._design(frame, x, fit_rows)
         target = label[fit_rows].astype(np.float64)

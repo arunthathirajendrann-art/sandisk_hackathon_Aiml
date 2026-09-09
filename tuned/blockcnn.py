@@ -42,6 +42,42 @@ from sklearn.preprocessing import StandardScaler
 from tuned import blocks, blocksim
 
 
+class BlockCNN:
+    """Lazily built CPU-friendly 1D CNN for 2,000 block readings."""
+
+    def __new__(cls, hidden_channels: int = 16):
+        import torch
+        from torch import nn
+
+        class Model(nn.Module):
+            def __init__(self):
+                super().__init__()
+                self.conv1 = nn.Conv1d(1, hidden_channels, kernel_size=9, stride=4, padding=4)
+                self.bn1 = nn.BatchNorm1d(hidden_channels)
+                self.conv2 = nn.Conv1d(hidden_channels, hidden_channels * 2, kernel_size=7, stride=2, padding=3)
+                self.bn2 = nn.BatchNorm1d(hidden_channels * 2)
+                self.conv3 = nn.Conv1d(hidden_channels * 2, hidden_channels * 2, kernel_size=5, stride=2, padding=2)
+                self.bn3 = nn.BatchNorm1d(hidden_channels * 2)
+                self.act = nn.ReLU()
+                self.pool = nn.AdaptiveAvgPool1d(1)
+                self.head = nn.Sequential(
+                    nn.Linear(hidden_channels * 2, 16),
+                    nn.ReLU(),
+                    nn.Linear(16, 1)
+                )
+
+            def forward(self, x: torch.Tensor) -> torch.Tensor:
+                if x.ndim == 2:
+                    x = x.unsqueeze(1)
+                h = self.act(self.bn1(self.conv1(x)))
+                h = self.act(self.bn2(self.conv2(h)))
+                h = self.act(self.bn3(self.conv3(h)))
+                h = self.pool(h).squeeze(-1)
+                return self.head(h).squeeze(-1)
+
+        return Model()
+
+
 class Net:
     """Lazily built so importing this module never requires torch."""
 
@@ -260,6 +296,102 @@ def derived_scores_combined(x: np.ndarray, label: np.ndarray, groups: np.ndarray
         model.fit(x[train_index], label[train_index])
         out[test_index] = model.predict_proba(x[test_index])[:, 1]
     return out
+
+
+def fit_predict_oof_cnn(
+    readings: np.ndarray,
+    label: np.ndarray,
+    old_label: np.ndarray,
+    wafer: np.ndarray,
+    n_splits: int = 5,
+    epochs: int = 5,
+    batch_size: int = 4096,
+    learning_rate: float = 3e-3,
+    seed: int = 42,
+    verbose: bool = True,
+) -> np.ndarray:
+    """Compute 5-fold wafer-grouped out-of-fold logit predictions from BlockCNN.
+
+    Preprocessing (sequence normalization) and model training are fitted strictly
+    on training-fold wafers only. Validation wafer logits are predicted out-of-fold.
+    """
+    cache_file = Path("input/cache_train/oof_cnn_logits.npy")
+    if cache_file.exists():
+        if verbose:
+            print(f"  Loaded cached OOF CNN logits from {cache_file}", flush=True)
+        return np.load(cache_file)
+
+    import torch
+    from torch import nn
+    from sklearn.model_selection import StratifiedGroupKFold
+
+    torch.set_num_threads(4)
+    device = torch.device("cpu")
+    eligible = old_label == 0
+    y_elig = label[eligible]
+    w_elig = wafer[eligible]
+
+    sgkf = StratifiedGroupKFold(n_splits=n_splits)
+    oof_logits = np.zeros(len(label), dtype=np.float64)
+
+    for fold, (train_elig_idx, val_elig_idx) in enumerate(sgkf.split(readings[eligible], y_elig, w_elig)):
+        train_wafers = set(w_elig[train_elig_idx])
+        val_wafers = set(w_elig[val_elig_idx])
+
+        fit_rows = np.isin(wafer, list(train_wafers))
+        val_rows = eligible & np.isin(wafer, list(val_wafers))
+
+        centre = float(np.median(readings[fit_rows]))
+        scale = float(1.4826 * np.median(np.abs(readings[fit_rows] - centre))) or 1.0
+
+        x_fit = (readings[fit_rows] - centre) / scale
+        y_fit = label[fit_rows].astype(np.float32)
+
+        x_val = (readings[val_rows] - centre) / scale
+
+        torch.manual_seed(seed + fold)
+        model = BlockCNN().to(device)
+
+        pos_weight = float((y_fit == 0).sum() / max((y_fit == 1).sum(), 1))
+        loss_fn = nn.BCEWithLogitsLoss(pos_weight=torch.tensor([np.sqrt(pos_weight)], device=device))
+        optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate, weight_decay=1e-4)
+
+        for epoch in range(epochs):
+            model.train()
+            order = torch.randperm(len(x_fit))
+            total_loss = 0.0
+            n_batches = 0
+            for start in range(0, len(order), batch_size):
+                idx = order[start : start + batch_size]
+                xb = torch.from_numpy(x_fit[idx]).to(device)
+                yb = torch.from_numpy(y_fit[idx]).to(device)
+
+                optimizer.zero_grad()
+                out = model(xb)
+                loss = loss_fn(out, yb)
+                loss.backward()
+                optimizer.step()
+                total_loss += loss.item()
+                n_batches += 1
+
+        model.eval()
+        with torch.no_grad():
+            val_preds = []
+            for start in range(0, len(x_val), 4096):
+                xb = torch.from_numpy(x_val[start : start + 4096]).to(device)
+                val_preds.append(model(xb).cpu().numpy())
+            oof_logits[val_rows] = np.concatenate(val_preds)
+        if verbose:
+            ap_fold = average_precision_score(label[val_rows], oof_logits[val_rows])
+            auc_fold = roc_auc_score(label[val_rows], oof_logits[val_rows])
+            print(f"  Fold {fold+1}/{n_splits} - CNN Val AP: {ap_fold:.4f}, ROC-AUC: {auc_fold:.4f}", flush=True)
+
+    cache_file.parent.mkdir(parents=True, exist_ok=True)
+    np.save(cache_file, oof_logits)
+    if verbose:
+        print(f"  Saved OOF CNN logits to {cache_file}", flush=True)
+
+    return oof_logits
 
 
 if __name__ == "__main__":

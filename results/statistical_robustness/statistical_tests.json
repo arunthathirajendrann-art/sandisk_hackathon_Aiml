@@ -1,0 +1,37 @@
+{
+  "primary_metric": {
+    "name": "Average Precision (AP)",
+    "n_paired_wafers": 154,
+    "mean_delta_ap": 0.06028014856702482,
+    "median_delta_ap": 0.06592388213505518,
+    "wilcoxon_signed_rank": {
+      "statistic": 450.0,
+      "p_value": 1.373485087044e-22,
+      "significant_at_05": true
+    },
+    "paired_ttest": {
+      "t_statistic": 14.952975819260883,
+      "p_value": 9.885460013543388e-32,
+      "significant_at_05": true
+    },
+    "effect_size": {
+      "metric": "Cohen's dz",
+      "value": 1.2049451295676643,
+      "interpretation": "Large effect size (dz > 0.8)"
+    }
+  },
+  "secondary_metrics": {
+    "roc_auc": {
+      "n_paired_wafers": 154,
+      "mean_delta_auc": 0.040703907151715825,
+      "wilcoxon_p_value": 4.256100333536303e-20,
+      "ttest_p_value": 1.038194977309972e-25
+    },
+    "f1_score": {
+      "n_paired_wafers": 154,
+      "mean_delta_f1": 0.02366306210605683,
+      "wilcoxon_p_value": 1.7165157137961882e-07,
+      "ttest_p_value": 4.443139368805871e-05
+    }
+  }
+}

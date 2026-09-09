@@ -1,0 +1,58 @@
+[
+  {
+    "experiment": "parametric_only_baseline",
+    "note": "Die measurements alone via Naive Bayes DiagonalScore",
+    "average_precision": 0.5257982199668222,
+    "roc_auc": 0.8533506180180286,
+    "fail_f1": 0.5293053930432933,
+    "fail_precision": 0.8632893823733518,
+    "fail_recall": 0.3816536278570333,
+    "accuracy": 0.9712731356751949,
+    "threshold": 0.24684759144673468,
+    "ap_std": 0.009867328525554924,
+    "f1_std": 0.007633064887796439,
+    "seconds": 62.98
+  },
+  {
+    "experiment": "parametric_only_mlp",
+    "note": "Die measurements alone via PyTorch MLP Encoder (500->256->128->64->1)",
+    "average_precision": 0.4881485992634954,
+    "roc_auc": 0.818159813937474,
+    "fail_f1": 0.5229532000446777,
+    "fail_precision": 0.9617912900575185,
+    "fail_recall": 0.35910415707930665,
+    "accuracy": 0.9722728954731655,
+    "threshold": 0.9051502632974485,
+    "ap_std": 0.006111274633527529,
+    "f1_std": 0.0061994679596221805,
+    "seconds": 298.22
+  },
+  {
+    "experiment": "model_a_baseline",
+    "note": "Model A (Spatial Context + DiagonalScore + Rate Posterior)",
+    "average_precision": 0.5815190357367572,
+    "roc_auc": 0.896253483635811,
+    "fail_f1": 0.5497640057459471,
+    "fail_precision": 0.8301828323520297,
+    "fail_recall": 0.41095260009203866,
+    "accuracy": 0.9715133377045775,
+    "threshold": 0.320767025161655,
+    "ap_std": 0.0215637639369819,
+    "f1_std": 0.016086775414913466,
+    "seconds": 77.1
+  },
+  {
+    "experiment": "model_a_mlp",
+    "note": "Model A (Spatial Context + PyTorch MLP Encoder + Rate Posterior)",
+    "average_precision": 0.48948142337337297,
+    "roc_auc": 0.8187120398437119,
+    "fail_f1": 0.5224080267558529,
+    "fail_precision": 0.95593635250918,
+    "fail_recall": 0.35941095260009204,
+    "accuracy": 0.9721885001655446,
+    "threshold": 0.9907884255176236,
+    "ap_std": 0.00588444825881584,
+    "f1_std": 0.006247269783155943,
+    "seconds": 432.73
+  }
+]

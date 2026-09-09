@@ -1,0 +1,54 @@
+[
+  {
+    "experiment": "model_a_baseline",
+    "average_precision": 0.5822325958157623,
+    "roc_auc": 0.8962904089904902,
+    "fail_f1": 0.5500876921489735,
+    "fail_precision": 0.8399495904221802,
+    "fail_recall": 0.4089584292069336,
+    "accuracy": 0.9716886202665593,
+    "threshold": 0.32676767676767676,
+    "ap_std": 0.027593496485060723,
+    "f1_std": 0.016021311979485635,
+    "seconds": 95.87
+  },
+  {
+    "experiment": "model_a_enhanced_spatial",
+    "average_precision": 0.5813361805160115,
+    "roc_auc": 0.8959355293997043,
+    "fail_f1": 0.5492279927812312,
+    "fail_precision": 0.7927641099855283,
+    "fail_recall": 0.42015646571560056,
+    "accuracy": 0.97081220745665,
+    "threshold": 0.29707070707070704,
+    "ap_std": 0.027136099625140825,
+    "f1_std": 0.012613203660214848,
+    "seconds": 143.98
+  },
+  {
+    "experiment": "spatial_only_baseline",
+    "average_precision": 0.05216733021821283,
+    "roc_auc": 0.56757060132494,
+    "fail_f1": 0.09791972378075098,
+    "fail_precision": 0.05516865735517255,
+    "fail_recall": 0.43503604847369226,
+    "accuracy": 0.6607763069911774,
+    "threshold": 0.059494949494949496,
+    "ap_std": 0.013085789292751821,
+    "f1_std": 0.023117391495693265,
+    "seconds": 65.6
+  },
+  {
+    "experiment": "spatial_only_enhanced",
+    "average_precision": 0.04867880379047899,
+    "roc_auc": 0.5465192720476306,
+    "fail_f1": 0.08819670260710823,
+    "fail_precision": 0.047641939698740234,
+    "fail_recall": 0.5928823439177788,
+    "accuracy": 0.4811960762673903,
+    "threshold": 0.049595959595959596,
+    "ap_std": 0.011549244062999852,
+    "f1_std": 0.015332601332017593,
+    "seconds": 296.67
+  }
+]

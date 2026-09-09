@@ -1,0 +1,818 @@
+[
+  {
+    "die_index": 147315,
+    "wafer_id": "W_N_0083",
+    "die_row": 9,
+    "die_col": 23,
+    "old_label": 0,
+    "predicted_probability": 0.9999909850108423,
+    "final_logit": 12.638585485291435,
+    "logit_decomposition": {
+      "spatial_contribution": -2.212899507142869,
+      "parametric_contribution": 10.635865467441757,
+      "block_contribution": 4.2156195249925466,
+      "evidence_offset": -1.306640625,
+      "sum_check_residual": 5.770617075406825e-06
+    },
+    "top_parametric_features": [
+      {
+        "feature_index": 147,
+        "feature_name": "feature_147",
+        "feature_value": 0.6155291795730591,
+        "weight": -1.0443630703206028,
+        "centre": 1.3485972475947692,
+        "contribution": 0.2332881131736389,
+        "abs_contribution": 0.2332881131736389,
+        "direction": "+"
+      },
+      {
+        "feature_index": 27,
+        "feature_name": "feature_27",
+        "feature_value": 97.55043029785156,
+        "weight": -0.021895167127092916,
+        "centre": 129.59803741530132,
+        "contribution": 0.21381623316580564,
+        "abs_contribution": 0.21381623316580564,
+        "direction": "+"
+      },
+      {
+        "feature_index": 385,
+        "feature_name": "feature_385",
+        "feature_value": 40.249427795410156,
+        "weight": 0.060176794908556805,
+        "centre": 29.85104098938913,
+        "contribution": 0.19067415192006365,
+        "abs_contribution": 0.19067415192006365,
+        "direction": "+"
+      },
+      {
+        "feature_index": 37,
+        "feature_name": "feature_37",
+        "feature_value": 71.36080169677734,
+        "weight": -0.034086826142764516,
+        "centre": 87.05938229421095,
+        "contribution": 0.1630586169849343,
+        "abs_contribution": 0.1630586169849343,
+        "direction": "+"
+      },
+      {
+        "feature_index": 319,
+        "feature_name": "feature_319",
+        "feature_value": 0.21961063146591187,
+        "weight": 39.76232962147047,
+        "centre": 0.2065678011476725,
+        "contribution": 0.15803033742863848,
+        "abs_contribution": 0.15803033742863848,
+        "direction": "+"
+      },
+      {
+        "feature_index": 330,
+        "feature_name": "feature_330",
+        "feature_value": -2867.343505859375,
+        "weight": -0.0007872325109579335,
+        "centre": -2266.0752791921823,
+        "contribution": 0.14423414277280575,
+        "abs_contribution": 0.14423414277280575,
+        "direction": "+"
+      },
+      {
+        "feature_index": 151,
+        "feature_name": "feature_151",
+        "feature_value": 40.14067459106445,
+        "weight": -0.03744232177862038,
+        "centre": 52.72746328755143,
+        "contribution": 0.14360663787719627,
+        "abs_contribution": 0.14360663787719627,
+        "direction": "+"
+      },
+      {
+        "feature_index": 469,
+        "feature_name": "feature_469",
+        "feature_value": 609.8023681640625,
+        "weight": -0.005196637394200589,
+        "centre": 699.4481624414616,
+        "contribution": 0.14195449057150775,
+        "abs_contribution": 0.14195449057150775,
+        "direction": "+"
+      },
+      {
+        "feature_index": 135,
+        "feature_name": "feature_135",
+        "feature_value": 2.692413806915283,
+        "weight": 1.073424620808483,
+        "centre": 2.2607146576848223,
+        "contribution": 0.14120482828339853,
+        "abs_contribution": 0.14120482828339853,
+        "direction": "+"
+      },
+      {
+        "feature_index": 251,
+        "feature_name": "feature_251",
+        "feature_value": 0.34051159024238586,
+        "weight": -11.758682788971099,
+        "centre": 0.37948468084682807,
+        "contribution": 0.1396433708502913,
+        "abs_contribution": 0.1396433708502913,
+        "direction": "+"
+      }
+    ],
+    "spatial_context": {
+      "wafer_id": "W_N_0083",
+      "die_row": 9,
+      "die_col": 23,
+      "hazard_shape": 1.665130853652954,
+      "wafer_rate": 0.050718959230613064,
+      "spatial_covariates": {
+        "haz_density_w3": {
+          "value": 0.0,
+          "partial_contribution": 0.017675511411090642
+        },
+        "haz_density_w7": {
+          "value": 0.0,
+          "partial_contribution": 0.0631634993120374
+        },
+        "haz_density_w11": {
+          "value": 0.024793388321995735,
+          "partial_contribution": 0.008503771122478652
+        },
+        "haz_radius": {
+          "value": 0.44342055916786194,
+          "partial_contribution": -0.010727462765458443
+        },
+        "haz_edge_distance": {
+          "value": 0.4415360987186432,
+          "partial_contribution": -0.05328791330157213
+        },
+        "haz_nearest_old_fail": {
+          "value": 0.0812283605337143,
+          "partial_contribution": -0.18479427771306636
+        },
+        "haz_wafer_old_fail_rate": {
+          "value": 0.0491582490503788,
+          "partial_contribution": 0.05416932377466645
+        }
+      }
+    },
+    "block_context": {
+      "peak_anomaly_index": 1505,
+      "peak_anomaly_range": "[1460, 1550]",
+      "peak_scan_value": 0.1447249334091125,
+      "top_block_features": [
+        {
+          "feature_name": "block_lr_g1.5_a0.45_w90_m1",
+          "raw_value": 2.2615530490875244,
+          "scaled_value": 4.017660140991211,
+          "coefficient": 0.27149483751189746,
+          "contribution": 1.090773987156436,
+          "abs_contribution": 1.090773987156436
+        },
+        {
+          "feature_name": "block_lr_g1.5_a0.2_w90_m1",
+          "raw_value": 2.1713333129882812,
+          "scaled_value": 3.9220967292785645,
+          "coefficient": 0.20281556876985424,
+          "contribution": 0.7954622789190171,
+          "abs_contribution": 0.7954622789190171
+        },
+        {
+          "feature_name": "block_lr_g1.5_a0.2_w150_max",
+          "raw_value": 4.412751197814941,
+          "scaled_value": 4.18002462387085,
+          "coefficient": 0.18110646269642766,
+          "contribution": 0.757029473613215,
+          "abs_contribution": 0.757029473613215
+        },
+        {
+          "feature_name": "block_lr_g1.5_a0.45_w90_m1.8",
+          "raw_value": 5.61203145980835,
+          "scaled_value": 4.602829933166504,
+          "coefficient": 0.15670160711959788,
+          "contribution": 0.7212708478253824,
+          "abs_contribution": 0.7212708478253824
+        },
+        {
+          "feature_name": "block_lr_g0_a0.8_w90_max",
+          "raw_value": 4.767306327819824,
+          "scaled_value": 3.7822816371917725,
+          "coefficient": -0.18302751918989985,
+          "contribution": -0.6922616249327229,
+          "abs_contribution": 0.6922616249327229
+        }
+      ]
+    },
+    "case_category": "True_Positive_TP",
+    "actual_label_offline": 1
+  },
+  {
+    "die_index": 108070,
+    "wafer_id": "W_F_0039",
+    "die_row": 17,
+    "die_col": 3,
+    "old_label": 0,
+    "predicted_probability": 0.7785203987652983,
+    "final_logit": 1.3758072816788856,
+    "logit_decomposition": {
+      "spatial_contribution": -3.1073513156992862,
+      "parametric_contribution": 0.46451280673519013,
+      "block_contribution": 4.0186457906429816,
+      "evidence_offset": -1.306640625,
+      "sum_check_residual": 0.019796388354437866
+    },
+    "top_parametric_features": [
+      {
+        "feature_index": 182,
+        "feature_name": "feature_182",
+        "feature_value": 1.2825167179107666,
+        "weight": -0.6352595980724027,
+        "centre": 2.3060908803191644,
+        "contribution": 0.1981378070687636,
+        "abs_contribution": 0.1981378070687636,
+        "direction": "+"
+      },
+      {
+        "feature_index": 417,
+        "feature_name": "feature_417",
+        "feature_value": 341.4314270019531,
+        "weight": -0.00912216065603752,
+        "centre": 404.482586206175,
+        "contribution": 0.1752619316808288,
+        "abs_contribution": 0.1752619316808288,
+        "direction": "+"
+      },
+      {
+        "feature_index": 295,
+        "feature_name": "feature_295",
+        "feature_value": 8.620166778564453,
+        "weight": 0.2571061479663661,
+        "centre": 6.628997463121959,
+        "contribution": 0.15599743396683896,
+        "abs_contribution": 0.15599743396683896,
+        "direction": "+"
+      },
+      {
+        "feature_index": 497,
+        "feature_name": "feature_497",
+        "feature_value": 0.5154674053192139,
+        "weight": -2.638563858931926,
+        "centre": 0.7077616325103736,
+        "contribution": 0.1546075357093016,
+        "abs_contribution": 0.1546075357093016,
+        "direction": "+"
+      },
+      {
+        "feature_index": 267,
+        "feature_name": "feature_267",
+        "feature_value": 90.97212219238281,
+        "weight": -0.028705928982921534,
+        "centre": 75.05579582450848,
+        "contribution": -0.13922308209291268,
+        "abs_contribution": 0.13922308209291268,
+        "direction": "-"
+      },
+      {
+        "feature_index": 374,
+        "feature_name": "feature_374",
+        "feature_value": 333.8691101074219,
+        "weight": -0.02493493463508878,
+        "centre": 351.75837002102577,
+        "contribution": 0.13592439541789772,
+        "abs_contribution": 0.13592439541789772,
+        "direction": "+"
+      },
+      {
+        "feature_index": 330,
+        "feature_name": "feature_330",
+        "feature_value": -2806.68603515625,
+        "weight": -0.0007872325109579335,
+        "centre": -2266.0752791921823,
+        "contribution": 0.12968343494956602,
+        "abs_contribution": 0.12968343494956602,
+        "direction": "+"
+      },
+      {
+        "feature_index": 203,
+        "feature_name": "feature_203",
+        "feature_value": 4.8351664543151855,
+        "weight": -1.0784659967746522,
+        "centre": 5.225782053761448,
+        "contribution": 0.12836683743404953,
+        "abs_contribution": 0.12836683743404953,
+        "direction": "+"
+      },
+      {
+        "feature_index": 180,
+        "feature_name": "feature_180",
+        "feature_value": 131.65293884277344,
+        "weight": -0.02463122764595306,
+        "centre": 148.20917949312857,
+        "contribution": 0.12426378858112856,
+        "abs_contribution": 0.12426378858112856,
+        "direction": "+"
+      },
+      {
+        "feature_index": 196,
+        "feature_name": "feature_196",
+        "feature_value": 1.3902840614318848,
+        "weight": 4.339068867771699,
+        "centre": 1.2983204079643063,
+        "contribution": 0.12159327650037705,
+        "abs_contribution": 0.12159327650037705,
+        "direction": "+"
+      }
+    ],
+    "spatial_context": {
+      "wafer_id": "W_F_0039",
+      "die_row": 17,
+      "die_col": 3,
+      "hazard_shape": 3.0761547088623047,
+      "wafer_rate": 0.021833764670611225,
+      "spatial_covariates": {
+        "haz_density_w3": {
+          "value": 0.3333333432674408,
+          "partial_contribution": -0.06061388265840421
+        },
+        "haz_density_w7": {
+          "value": 0.3478260934352875,
+          "partial_contribution": -0.19116484996196076
+        },
+        "haz_density_w11": {
+          "value": 0.239130437374115,
+          "partial_contribution": -0.019981004395552775
+        },
+        "haz_radius": {
+          "value": 0.5841031074523926,
+          "partial_contribution": 0.07086115553301398
+        },
+        "haz_edge_distance": {
+          "value": 0.17329174280166626,
+          "partial_contribution": 0.15646046983776085
+        },
+        "haz_nearest_old_fail": {
+          "value": 0.018601633608341217,
+          "partial_contribution": 0.08923612520891522
+        },
+        "haz_wafer_old_fail_rate": {
+          "value": 0.10910730063915253,
+          "partial_contribution": -0.007943315827526633
+        }
+      }
+    },
+    "block_context": {
+      "peak_anomaly_index": 641,
+      "peak_anomaly_range": "[596, 686]",
+      "peak_scan_value": 0.15890544963474418,
+      "top_block_features": [
+        {
+          "feature_name": "block_lr_g1.5_a0.45_w90_m1",
+          "raw_value": 2.312272787094116,
+          "scaled_value": 4.124745845794678,
+          "coefficient": 0.27149483751189746,
+          "contribution": 1.1198472031819,
+          "abs_contribution": 1.1198472031819
+        },
+        {
+          "feature_name": "block_lr_g1.5_a0.2_w90_m1",
+          "raw_value": 2.261641502380371,
+          "scaled_value": 4.117205619812012,
+          "coefficient": 0.20281556876985424,
+          "contribution": 0.8350333995246134,
+          "abs_contribution": 0.8350333995246134
+        },
+        {
+          "feature_name": "block_lr_g1.5_a0.2_w150_max",
+          "raw_value": 4.566637992858887,
+          "scaled_value": 4.38901424407959,
+          "coefficient": 0.18110646269642766,
+          "contribution": 0.7948788444694899,
+          "abs_contribution": 0.7948788444694899
+        },
+        {
+          "feature_name": "block_lr_g0_a0.8_w90_max",
+          "raw_value": 5.187333106994629,
+          "scaled_value": 4.310195446014404,
+          "coefficient": -0.18302751918989985,
+          "contribution": -0.7888843797076203,
+          "abs_contribution": 0.7888843797076203
+        },
+        {
+          "feature_name": "block_lr_g0_a0.45_w150_m1",
+          "raw_value": 3.005098342895508,
+          "scaled_value": 4.634770393371582,
+          "coefficient": -0.16528453775754318,
+          "contribution": -0.7660558820807685,
+          "abs_contribution": 0.7660558820807685
+        }
+      ]
+    },
+    "case_category": "False_Positive_FP",
+    "actual_label_offline": 0
+  },
+  {
+    "die_index": 112415,
+    "wafer_id": "W_N_0007",
+    "die_row": 20,
+    "die_col": 18,
+    "old_label": 0,
+    "predicted_probability": 0.00015972761321179715,
+    "final_logit": -11.747723316601002,
+    "logit_decomposition": {
+      "spatial_contribution": -6.422270252781701,
+      "parametric_contribution": -3.6316262808992237,
+      "block_contribution": -1.693826782920079,
+      "evidence_offset": -1.306640625,
+      "sum_check_residual": 0.00015182036895289568
+    },
+    "top_parametric_features": [
+      {
+        "feature_index": 205,
+        "feature_name": "feature_205",
+        "feature_value": 0.09145646542310715,
+        "weight": 9.421076365896905,
+        "centre": 0.15218717858588265,
+        "contribution": -0.1743434786353649,
+        "abs_contribution": 0.1743434786353649,
+        "direction": "-"
+      },
+      {
+        "feature_index": 76,
+        "feature_name": "feature_76",
+        "feature_value": 0.19527556002140045,
+        "weight": 4.344092833073666,
+        "centre": 0.3071772158634535,
+        "contribution": -0.148126381010795,
+        "abs_contribution": 0.148126381010795,
+        "direction": "-"
+      },
+      {
+        "feature_index": 355,
+        "feature_name": "feature_355",
+        "feature_value": 1875.1300048828125,
+        "weight": -0.001054249679347061,
+        "centre": 1421.5563818575965,
+        "contribution": -0.1457095678942154,
+        "abs_contribution": 0.1457095678942154,
+        "direction": "-"
+      },
+      {
+        "feature_index": 212,
+        "feature_name": "feature_212",
+        "feature_value": 18.392091751098633,
+        "weight": -0.16504366297991677,
+        "centre": 15.706839321818862,
+        "contribution": -0.13504570419964348,
+        "abs_contribution": 0.13504570419964348,
+        "direction": "-"
+      },
+      {
+        "feature_index": 339,
+        "feature_name": "feature_339",
+        "feature_value": 58.853553771972656,
+        "weight": -0.033430809684133964,
+        "centre": 45.731497601762314,
+        "contribution": -0.13367358314621194,
+        "abs_contribution": 0.13367358314621194,
+        "direction": "-"
+      },
+      {
+        "feature_index": 173,
+        "feature_name": "feature_173",
+        "feature_value": 1.3705006837844849,
+        "weight": 1.5176028547166995,
+        "centre": 1.6549838216408523,
+        "contribution": -0.1315562441979982,
+        "abs_contribution": 0.1315562441979982,
+        "direction": "-"
+      },
+      {
+        "feature_index": 16,
+        "feature_name": "feature_16",
+        "feature_value": -12.025422096252441,
+        "weight": 0.6016991557268617,
+        "centre": -11.325890530495158,
+        "contribution": -0.12825772150959988,
+        "abs_contribution": 0.12825772150959988,
+        "direction": "-"
+      },
+      {
+        "feature_index": 400,
+        "feature_name": "feature_400",
+        "feature_value": 2837.609619140625,
+        "weight": 0.0034068240253919183,
+        "centre": 2954.6175107763265,
+        "contribution": -0.12146793742300578,
+        "abs_contribution": 0.12146793742300578,
+        "direction": "-"
+      },
+      {
+        "feature_index": 52,
+        "feature_name": "feature_52",
+        "feature_value": 2.925036907196045,
+        "weight": 0.3482794260801568,
+        "centre": 4.043142204599016,
+        "contribution": -0.1186608150624178,
+        "abs_contribution": 0.1186608150624178,
+        "direction": "-"
+      },
+      {
+        "feature_index": 240,
+        "feature_name": "feature_240",
+        "feature_value": 0.35022759437561035,
+        "weight": -12.361631955993023,
+        "centre": 0.31927778661702444,
+        "contribution": -0.1165817490993141,
+        "abs_contribution": 0.1165817490993141,
+        "direction": "-"
+      }
+    ],
+    "spatial_context": {
+      "wafer_id": "W_N_0007",
+      "die_row": 20,
+      "die_col": 18,
+      "hazard_shape": 1.2083146572113037,
+      "wafer_rate": 0.000994389261812288,
+      "spatial_covariates": {
+        "haz_density_w3": {
+          "value": 0.0,
+          "partial_contribution": 0.017675511411090642
+        },
+        "haz_density_w7": {
+          "value": 0.020408162847161293,
+          "partial_contribution": 0.04824117328016615
+        },
+        "haz_density_w11": {
+          "value": 0.024793388321995735,
+          "partial_contribution": 0.008503771122478652
+        },
+        "haz_radius": {
+          "value": 0.13887640833854675,
+          "partial_contribution": -0.18734735471390138
+        },
+        "haz_edge_distance": {
+          "value": 0.8562644124031067,
+          "partial_contribution": -0.37757653790302237
+        },
+        "haz_nearest_old_fail": {
+          "value": 0.06896096467971802,
+          "partial_contribution": -0.13111688478975705
+        },
+        "haz_wafer_old_fail_rate": {
+          "value": 0.04445919021964073,
+          "partial_contribution": 0.05903797373472342
+        }
+      }
+    },
+    "block_context": {
+      "peak_anomaly_index": 1982,
+      "peak_anomaly_range": "[1937, 1999]",
+      "peak_scan_value": 0.047716668118282984,
+      "top_block_features": [
+        {
+          "feature_name": "block_lr_g1.5_a0.45_w90_m1",
+          "raw_value": -0.8432449102401733,
+          "scaled_value": -2.537559747695923,
+          "coefficient": 0.27149483751189746,
+          "contribution": -0.6889343713774361,
+          "abs_contribution": 0.6889343713774361
+        },
+        {
+          "feature_name": "block_lr_g1.5_a0.2_w90_m1",
+          "raw_value": -0.6308563947677612,
+          "scaled_value": -2.131976842880249,
+          "coefficient": 0.20281556876985424,
+          "contribution": -0.43239809599291584,
+          "abs_contribution": 0.43239809599291584
+        },
+        {
+          "feature_name": "block_lr_g1.5_a0.8_w150_max",
+          "raw_value": -0.6074448227882385,
+          "scaled_value": -2.377863883972168,
+          "coefficient": 0.17813071091495847,
+          "contribution": -0.4235705841109666,
+          "abs_contribution": 0.4235705841109666
+        },
+        {
+          "feature_name": "block_lr_g0_a0.8_w90_max",
+          "raw_value": 0.03404902294278145,
+          "scaled_value": -2.1667487621307373,
+          "coefficient": -0.18302751918989985,
+          "contribution": 0.39657465064057523,
+          "abs_contribution": 0.39657465064057523
+        },
+        {
+          "feature_name": "block_lr_g1.5_a0.8_w90_m1.8",
+          "raw_value": -1.6397297382354736,
+          "scaled_value": -2.4416720867156982,
+          "coefficient": -0.16033128167659338,
+          "contribution": 0.39147641509709014,
+          "abs_contribution": 0.39147641509709014
+        }
+      ]
+    },
+    "case_category": "True_Negative_TN",
+    "actual_label_offline": 0
+  },
+  {
+    "die_index": 160741,
+    "wafer_id": "W_N_0055",
+    "die_row": 23,
+    "die_col": 11,
+    "old_label": 0,
+    "predicted_probability": 0.001533277422918655,
+    "final_logit": -7.55977612686906,
+    "logit_decomposition": {
+      "spatial_contribution": -4.252802526435522,
+      "parametric_contribution": -2.844522076743191,
+      "block_contribution": -0.46245152369034814,
+      "evidence_offset": -1.306640625,
+      "sum_check_residual": 0.0010125568471929572
+    },
+    "top_parametric_features": [
+      {
+        "feature_index": 401,
+        "feature_name": "feature_401",
+        "feature_value": -34.83478546142578,
+        "weight": 0.1557669410909378,
+        "centre": -29.46116654312063,
+        "contribution": -0.25505800450862576,
+        "abs_contribution": 0.25505800450862576,
+        "direction": "-"
+      },
+      {
+        "feature_index": 153,
+        "feature_name": "feature_153",
+        "feature_value": -0.1630132645368576,
+        "weight": 38.39783815736802,
+        "centre": -0.14663335450108086,
+        "contribution": -0.19165276435471615,
+        "abs_contribution": 0.19165276435471615,
+        "direction": "-"
+      },
+      {
+        "feature_index": 161,
+        "feature_name": "feature_161",
+        "feature_value": 246.66799926757812,
+        "weight": -0.021909219300412588,
+        "centre": 221.4583522903483,
+        "contribution": -0.16830246175330774,
+        "abs_contribution": 0.16830246175330774,
+        "direction": "-"
+      },
+      {
+        "feature_index": 330,
+        "feature_name": "feature_330",
+        "feature_value": -2888.2265625,
+        "weight": -0.0007872325109579335,
+        "centre": -2266.0752791921823,
+        "contribution": 0.14924363710403324,
+        "abs_contribution": 0.14924363710403324,
+        "direction": "+"
+      },
+      {
+        "feature_index": 173,
+        "feature_name": "feature_173",
+        "feature_value": 1.937332034111023,
+        "weight": 1.5176028547166995,
+        "centre": 1.6549838216408523,
+        "contribution": 0.13056897033857942,
+        "abs_contribution": 0.13056897033857942,
+        "direction": "+"
+      },
+      {
+        "feature_index": 237,
+        "feature_name": "feature_237",
+        "feature_value": 4.737208843231201,
+        "weight": -0.9039590222013084,
+        "centre": 5.199027700532486,
+        "contribution": 0.12720881527453873,
+        "abs_contribution": 0.12720881527453873,
+        "direction": "+"
+      },
+      {
+        "feature_index": 425,
+        "feature_name": "feature_425",
+        "feature_value": -0.09297532588243484,
+        "weight": -25.879451660831855,
+        "centre": -0.10859445492700462,
+        "contribution": -0.12317106174827692,
+        "abs_contribution": 0.12317106174827692,
+        "direction": "-"
+      },
+      {
+        "feature_index": 118,
+        "feature_name": "feature_118",
+        "feature_value": 9.450006484985352,
+        "weight": 0.24589788441619273,
+        "centre": 7.865370707052377,
+        "contribution": 0.11873562739885339,
+        "abs_contribution": 0.11873562739885339,
+        "direction": "+"
+      },
+      {
+        "feature_index": 441,
+        "feature_name": "feature_441",
+        "feature_value": -2.1023528575897217,
+        "weight": 3.222765541029132,
+        "centre": -1.9815696864062589,
+        "contribution": -0.1186129046239127,
+        "abs_contribution": 0.1186129046239127,
+        "direction": "-"
+      },
+      {
+        "feature_index": 475,
+        "feature_name": "feature_475",
+        "feature_value": -52.606727600097656,
+        "weight": 0.06918901384839891,
+        "centre": -47.00319167551945,
+        "contribution": -0.11813976512554301,
+        "abs_contribution": 0.11813976512554301,
+        "direction": "-"
+      }
+    ],
+    "spatial_context": {
+      "wafer_id": "W_N_0055",
+      "die_row": 23,
+      "die_col": 11,
+      "hazard_shape": 1.619307041168213,
+      "wafer_rate": 0.006790239819594233,
+      "spatial_covariates": {
+        "haz_density_w3": {
+          "value": 0.0,
+          "partial_contribution": 0.017675511411090642
+        },
+        "haz_density_w7": {
+          "value": 0.020408162847161293,
+          "partial_contribution": 0.04824117328016615
+        },
+        "haz_density_w11": {
+          "value": 0.01652892492711544,
+          "partial_contribution": 0.00960209446704849
+        },
+        "haz_radius": {
+          "value": 0.33287131786346436,
+          "partial_contribution": -0.07484031799841984
+        },
+        "haz_edge_distance": {
+          "value": 0.5376033186912537,
+          "partial_contribution": -0.1284057810869514
+        },
+        "haz_nearest_old_fail": {
+          "value": 0.03721614554524422,
+          "partial_contribution": 0.007786200285584598
+        },
+        "haz_wafer_old_fail_rate": {
+          "value": 0.049165934324264526,
+          "partial_contribution": 0.054161361135818
+        }
+      }
+    },
+    "block_context": {
+      "peak_anomaly_index": 189,
+      "peak_anomaly_range": "[144, 234]",
+      "peak_scan_value": 0.09066356588272093,
+      "top_block_features": [
+        {
+          "feature_name": "block_lr_g1.5_a0.45_w90_m1",
+          "raw_value": 0.07970207184553146,
+          "scaled_value": -0.5889238119125366,
+          "coefficient": 0.27149483751189746,
+          "contribution": -0.1598897746220814,
+          "abs_contribution": 0.1598897746220814
+        },
+        {
+          "feature_name": "block_lr_g0_a0.8_w90_max",
+          "raw_value": 1.1956571340560913,
+          "scaled_value": -0.7067728042602539,
+          "coefficient": -0.18302751918989985,
+          "contribution": 0.12935887299464294,
+          "abs_contribution": 0.12935887299464294
+        },
+        {
+          "feature_name": "block_lr_g1.5_a0.2_w90_m1",
+          "raw_value": 0.07923027873039246,
+          "scaled_value": -0.5978490710258484,
+          "coefficient": 0.20281556876985424,
+          "contribution": -0.12125309937863643,
+          "abs_contribution": 0.12125309937863643
+        },
+        {
+          "feature_name": "block_lr_g1.5_a0.8_w150_max",
+          "raw_value": 0.8423992395401001,
+          "scaled_value": -0.6415980458259583,
+          "coefficient": 0.17813071091495847,
+          "contribution": -0.11428831602462604,
+          "abs_contribution": 0.11428831602462604
+        },
+        {
+          "feature_name": "block_lr_g1.5_a0.45_w90_m1.8",
+          "raw_value": 0.4857123792171478,
+          "scaled_value": -0.6318938136100769,
+          "coefficient": 0.15670160711959788,
+          "contribution": -0.09901877612163068,
+          "abs_contribution": 0.09901877612163068
+        }
+      ]
+    },
+    "case_category": "False_Negative_FN",
+    "actual_label_offline": 1
+  }
+]

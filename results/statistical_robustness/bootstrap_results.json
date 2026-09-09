@@ -1,0 +1,34 @@
+{
+  "n_bootstrap": 1000,
+  "seed": 42,
+  "primary_metric": {
+    "metric": "Average Precision (AP)",
+    "observed_delta_ap": 0.07325216779328048,
+    "bootstrap_mean_delta_ap": 0.07316561440193688,
+    "bootstrap_std_delta_ap": 0.0026986954737617252,
+    "ci_95_percentile": [
+      0.06768165519728789,
+      0.07832578758531313
+    ]
+  },
+  "secondary_metrics": {
+    "roc_auc": {
+      "observed_delta_auc": 0.02918317781665436,
+      "bootstrap_mean_delta_auc": 0.029428799046388655,
+      "bootstrap_std_delta_auc": 0.0019114598695181364,
+      "ci_95_percentile": [
+        0.02563220005194929,
+        0.033136255038215365
+      ]
+    },
+    "f1_score": {
+      "observed_delta_f1": 0.055855002096685036,
+      "bootstrap_mean_delta_f1": 0.05569991303778058,
+      "bootstrap_std_delta_f1": 0.0049668441821319005,
+      "ci_95_percentile": [
+        0.045666134851613534,
+        0.06487387331248862
+      ]
+    }
+  }
+}

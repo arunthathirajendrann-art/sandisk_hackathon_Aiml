@@ -1,0 +1,19 @@
+{
+  "total_wafers_analyzed": 160,
+  "valid_paired_wafers": 154,
+  "wafer_consistency": {
+    "b_gt_a": 133,
+    "b_lt_a": 17,
+    "b_eq_a": 4,
+    "pct_improved": 86.36363636363636
+  },
+  "observed_ap_delta": 0.07325216779328048,
+  "bootstrap_95_ci_ap": [
+    0.06768165519728789,
+    0.07832578758531313
+  ],
+  "wilcoxon_p_value_ap": 1.373485087044e-22,
+  "ttest_p_value_ap": 9.885460013543388e-32,
+  "cohens_dz_ap": 1.2049451295676643,
+  "conclusion": "Model B improvement over Model A is statistically robust and stable across wafers."
+}
